@@ -1,7 +1,12 @@
-import { EditorState } from "draft-js";
+
+import { List } from 'immutable';
 
 const InitialState = {
-    editorState: EditorState.createEmpty()
+    editorState: null,
+    documentList: List(),
+    documentListLength: 0,
+    authenticated: false,
+    showLoginScreen: false
 }
 
 export default InitialState;

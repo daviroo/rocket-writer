@@ -1,6 +1,9 @@
 import React from "react";
+// import SEOBoxStyles from './SEOBoxStyles';
 
 function SEOBox(props) {
+  // placeholder
+  // const classes = SEOBoxStyles();
   return (
     <div className="attributeBox">
       <h4>{props.header}</h4>
