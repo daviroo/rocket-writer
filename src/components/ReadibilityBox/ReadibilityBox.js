@@ -1,20 +1,23 @@
 import React, {useContext} from "react";
 import { StateContext } from "../../state/StateProvider";
-import CircularProgress from "@material-ui/core/CircularProgress";
-// import ReadibilityBoxStyles from './ReadibilityBoxStyles';
 function ReadibilityBox(props) {
   const { editorState } = useContext(StateContext);
-  // placeholder
-  // const classes = ReadibilityBoxStyles();
-
-
-  if(!editorState){
-    return <CircularProgress />
-  }
-const charCount = editorState.text.length;
-const wordCount = editorState.nodes.filter(node => node.type === "paragraph" && node.text).reduce((t, i) => t+= i.text.split(' ').length, 0);
-const sentenceCount = editorState.nodes.filter(node => node.type === "paragraph" && node.text).reduce((t, i) => t+= i.text.match(/[\w|)][.?!](\s|$)/g) == null ? 0 : i.text.match(/[\w|)][.?!](\s|$)/g).length, 0);
-  
+  let charCount = 0;
+  let wordCount = 0;
+  let sentenceCount = 0;
+  let paragraphCount = 0;
+  editorState.forEach((section) => {
+    section.children.forEach((child) => {
+      charCount = charCount + child.text.length;
+      wordCount = wordCount + ((child.text.match(/[\w-]+/g) == null) ? 0 : child.text.match(/[\w-]+/g).length);
+      if(section.type === "paragraph"){
+        sentenceCount = sentenceCount + ((child.text.match(/[\w|)][.?!:](\s|$)/g) == null) ? 0 : child.text.match(/[\w|)][.?!:](\s|$)/g).length);
+      }
+    })
+    if(section.type === "paragraph" && !section.children.every(child => child.text.length === 0 )){
+      paragraphCount += 1;
+    }
+  }) 
   
   return (
     <div className="attributeBox">
@@ -24,7 +27,7 @@ const sentenceCount = editorState.nodes.filter(node => node.type === "paragraph"
       <p>Characters: {charCount}</p>
       <p>Words: {wordCount}</p>
       <p>Sentences: {sentenceCount}</p>
-      <p>Paragraphs: {editorState.nodes.filter(node => node.type === "paragraph" && node.text).count()}</p>
+      <p>Paragraphs: {paragraphCount}</p>
     </div>
   );
 }

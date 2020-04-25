@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react'
 import LayoutStyles from './LayoutStyles';
 import {Paper, Grid} from "@material-ui/core"
-import WriteText from "../components/WriteText";
+import RichTextWriter from '../components/RichTextWriter/RichTextWriter'
 import ReadibilityBox from "../components/ReadibilityBox/ReadibilityBox";
 import SEOBox from "../components/SEOBox/SEOBox";
 import KeywordBox from "../components/KeywordBox/KeywordBox";
@@ -33,7 +33,7 @@ export default function Layout() {
           <DocumentsList />
         <Grid item xs={documentListLength === 0 ? 10 : 8}>
           <KeywordBox />
-            <WriteText />
+            <RichTextWriter />
         </Grid>
         <Grid item xs={2}>
           <Paper className={classes.paper}>

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.9",
+    "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.48",
     "@slate-editor/alignment-plugin": "^5.1.0",
     "@slate-editor/bold-plugin": "^5.1.0",
@@ -21,6 +22,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "add": "^2.0.6",
     "firebase": "^7.13.1",
     "immutable": "^4.0.0-rc.12",
     "is-hotkey": "^0.1.6",
@@ -28,11 +30,14 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-firebaseui": "^4.1.0",
+    "react-keyboard-event-handler": "^1.5.4",
     "react-scripts": "3.4.0",
+    "semantic-ui-react": "^0.88.2",
     "slate": "^0.57.1",
     "slate-editor": "^5.1.1",
     "slate-history": "^0.57.1",
-    "slate-react": "^0.57.1"
+    "slate-react": "^0.57.1",
+    "yarn": "^1.22.4"
   },
   "scripts": {
     "start": "react-scripts start",
