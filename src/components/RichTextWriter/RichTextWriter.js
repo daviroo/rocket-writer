@@ -1,14 +1,15 @@
-import React, { useCallback, useMemo, useContext } from 'react'
-import { DispatchContext, StateContext } from "../..//state/StateProvider";
+import React, { useCallback, useMemo } from 'react'
 import isHotkey from 'is-hotkey'
 import { Editable, withReact, useSlate, Slate } from 'slate-react'
 import { Editor, Transforms, createEditor } from 'slate'
 import { withHistory } from 'slate-history'
 import RichTextWriterStyles from './RichTextWriterStyles';
-import { updateEditorState } from '../../state/actions/EditorActions';
-import {FormatListNumbered, List} from '@material-ui/icons';
+import {FormatListNumbered, List, Save} from '@material-ui/icons';
 import {Button} from "@material-ui/core";
 import KeyboardEventHandler from 'react-keyboard-event-handler';
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+import { updateDocumentContent, saveDocument } from '../../state/actions/EditorActions'
+import { showLoginScreen } from '../../state/actions/AuthActions'
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -21,15 +22,33 @@ const LIST_TYPES = ['numbered-list', 'bulleted-list']
 
 const RichTextWriter = () => {
   const classes = RichTextWriterStyles();
-  const dispatch = useContext(DispatchContext);
-  const { editorState } = useContext(StateContext);
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
+  const editorState = useSelector((state) => state.documentState, shallowEqual);
+  const user = useSelector(state => state.authState.user, shallowEqual);
+  const dispatch = useDispatch()
+
+
 
   return (
-    <Slate editor={editor} value={editorState} onChange={value => dispatch(updateEditorState(value))} >
+    <Slate editor={editor} value={editorState.content.body} onChange={value => dispatch(updateDocumentContent(value))} >
       <div className={classes.root}>
+      <Button
+        color="primary"
+        startIcon={<Save />}
+        className={classes.saveButton}
+        onClick={() => {
+          if(!user){
+            // not logged in
+            dispatch(showLoginScreen())
+            return;
+          }
+          dispatch(saveDocument())
+          }}
+      >
+        Save
+      </Button>
       <div className={classes.toolbar}>
         <MarkButton format="bold" icon={<b>B</b>} />
         <MarkButton format="italic" icon={<i>I</i>} />
@@ -50,7 +69,7 @@ const RichTextWriter = () => {
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
-        placeholder="Enter some rich text…"
+        placeholder="Start writing your document"
         spellCheck
         autoFocus
         onKeyDown={event => {

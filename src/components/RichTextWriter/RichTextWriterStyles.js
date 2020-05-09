@@ -14,6 +14,11 @@ const RichTextWriterStyles = makeStyles(theme => ({
     },
     inactiveButton: {
         backgroundColor: "white"
+    },
+    saveButton: {
+        position: "relative",
+        zIndex: "99",
+        float: "right"
     }
 }));
 

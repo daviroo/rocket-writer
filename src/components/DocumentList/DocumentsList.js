@@ -1,12 +1,12 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {Paper, Grid} from '@material-ui/core'
-import { StateContext } from "../../state/StateProvider";
 import DocumentListStyles from './DocumentListStyles'
+import { useSelector } from 'react-redux';
 
 const DocumentsList = () => {
     const classes = DocumentListStyles();
-    const { documentList } = useContext(StateContext);
-    if(documentList.isEmpty())
+    const documentList = useSelector(state => state.documentListState.docs)
+    if(documentList.length < 1)
         return <></>
     return (
         <Grid item xs={2}>

@@ -1,27 +1,25 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { StateContext } from "../../state/StateProvider";
 import firebase from 'firebase/app';
 import 'firebase/auth'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 // import LoginScreenStyles from './LoginScreenStyles';
+import { useSelector } from 'react-redux';
+
 const uiConfig = {
-    signInFlow: 'popup',
-    credentialHelper: 'none',
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    ],
-    callbacks: {
-      signInSuccessWithAuthResult: () => false,
-    },
-  };
-
-
+  signInFlow: 'popup',
+  credentialHelper: 'none',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+  ],
+};
 const LoginScreen = () => {
-    const { showLoginScreen } = useContext(StateContext);
+  const showLoginScreen = useSelector(state => state.authState.showLoginScreen)
+    
+   
     // placeholder
     // const classes = LoginScreenStyles();
     return (
