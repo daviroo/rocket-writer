@@ -44,10 +44,9 @@ export function updateDocumentIdFailed(){
 }
 
 export const SAVE_DOCUMENT = "SAVE_DOCUMENT";
-export function saveDocument(payload){
+export function saveDocument(){
     return {
-        type: SAVE_DOCUMENT,
-        payload: payload
+        type: SAVE_DOCUMENT
     }
 }
 

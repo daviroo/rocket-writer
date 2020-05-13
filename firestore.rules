@@ -8,8 +8,13 @@ service cloud.firestore {
       allow read, update, delete: if request.auth.uid == userId;
       allow create: if request.auth.uid != null;
     }
-    match /accounts/{account}/documents {
-      allow read, update, delete, create: if resource.data.users[request.auth.uid] != null;
+    match /accounts/{account} {
+      allow read: if get(/databases/$(database)/documents/accounts/$(account)).data.users[request.auth.uid] != null;
+    }
+    match /accounts/{account}/documents/{document} {
+      allow read, update, delete, create: if get(/databases/$(database)/documents/accounts/$(account)).data.users[request.auth.uid].role == 'admin' 
+      && request.resource.data.title != null
+      && request.resource.data.title != ""
     }
   }
 }

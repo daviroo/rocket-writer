@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "./layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
-import * as firebase from "firebase/app";
+import firebase from './firebase';
 import {
   loginSuccess,
   logoutSuccess,
@@ -25,12 +25,14 @@ function Main() {
   if (!appLoaded) {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        dispatch(loginSuccess(user));
         firebase
-          .firestore()
-          .doc(`users/${user.uid}`)
-          .get()
-          .then((doc) => dispatch(updateAccountId(doc.data.account)));
+        .firestore()
+        .doc(`users/${user.uid}`)
+        .get()
+        .then((doc) => {
+            dispatch(updateAccountId(doc.data().account))
+            dispatch(loginSuccess(user));
+        });
       } else {
         dispatch(logoutSuccess());
       }

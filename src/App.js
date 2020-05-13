@@ -1,25 +1,24 @@
 import React from 'react';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import createSagaMiddleware from "redux-saga";
 import './App.css';
 import reducers from './state/reducers';
-import * as firebase from 'firebase/app';
-import firebaseConfig from './firebase-config';
-import "firebase/firestore";
-import "firebase/auth";
 import Main from './Main';
-firebase.initializeApp(firebaseConfig);
+import rootSaga from './state/side-effects/RootSaga';
 
 
-const middlewares = [];
+const sagaMiddleware = createSagaMiddleware()
+const middlewares = [sagaMiddleware];
  
 if (process.env.NODE_ENV === `development`) {
   const { logger } = require(`redux-logger`);
  
   middlewares.push(logger);
 }
-const store = createStore(reducers, applyMiddleware(...middlewares))
 
+const store = createStore(reducers, applyMiddleware(...middlewares))
+sagaMiddleware.run(rootSaga);
 
 function App() {
   return (

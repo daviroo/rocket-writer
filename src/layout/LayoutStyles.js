@@ -8,6 +8,9 @@ const LayoutStyles = makeStyles(theme => ({
       padding: theme.spacing(2),
       textAlign: "left",
       color: theme.palette.text.secondary
+    },
+    titleInput: {
+      marginLeft: "20px"
     }
   }));
 

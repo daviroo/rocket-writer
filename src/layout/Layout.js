@@ -8,7 +8,7 @@ import KeywordBox from "../components/KeywordBox/KeywordBox";
 import DocumentsList from '../components/DocumentList/DocumentsList'
 import Header from '../components/Header/Header'
 import {useSelector} from 'react-redux';
-
+import { Input } from '@material-ui/core';
 export default function Layout() {
     const classes = LayoutStyles();
     const documentsList = useSelector(state => state.documentListState.docs);
@@ -20,6 +20,7 @@ export default function Layout() {
           <DocumentsList />
         <Grid item xs={documentsList.length === 0 ? 10 : 8}>
           <KeywordBox />
+          <Input fullWidth placeholder="Title" className={classes.titleInput}/>
             <RichTextWriter />
         </Grid>
         <Grid item xs={2}>

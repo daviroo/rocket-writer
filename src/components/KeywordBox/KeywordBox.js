@@ -24,8 +24,6 @@ const KeywordBox = () => {
         }
         value={keywords}
         onChange={(e, v, r) => {
-          console.log("in onchage")
-          console.log(r)
           switch(r){
             case "create-option" || "select-option":
               dispatch(addKeyword(v))

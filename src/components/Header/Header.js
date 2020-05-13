@@ -4,7 +4,7 @@ import LoginScreen from '../LoginScreen/LoginScreen'
 import HeaderStyles from './HeaderStyles';
 import { useSelector, useDispatch } from 'react-redux';
 import { showLoginScreen } from '../../state/actions/AuthActions';
-import * as firebase from 'firebase/app';
+import firebase from '../../firebase';
 
 const Header = () => {
     const classes = HeaderStyles();

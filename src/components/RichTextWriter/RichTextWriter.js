@@ -10,7 +10,7 @@ import KeyboardEventHandler from 'react-keyboard-event-handler';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { updateDocumentContent, saveDocument } from '../../state/actions/EditorActions'
 import { showLoginScreen } from '../../state/actions/AuthActions'
-
+import { Input } from '@material-ui/core';
 const HOTKEYS = {
   'mod+b': 'bold',
   'mod+i': 'italic',
