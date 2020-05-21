@@ -5,12 +5,13 @@ import { Editor, Transforms, createEditor } from 'slate'
 import { withHistory } from 'slate-history'
 import RichTextWriterStyles from './RichTextWriterStyles';
 import {FormatListNumbered, List, Save} from '@material-ui/icons';
-import {Button} from "@material-ui/core";
+import {Button, TextField} from "@material-ui/core";
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
-import { updateDocumentContent, saveDocument } from '../../state/actions/EditorActions'
-import { showLoginScreen } from '../../state/actions/AuthActions'
-import { Input } from '@material-ui/core';
+import { updateDocumentContent, saveDocument, showTitleRequired, setTitle } from '../../state/actions/EditorActions'
+import { showLoginScreen } from '../../state/actions/AuthActions';
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 const HOTKEYS = {
   'mod+b': 'bold',
   'mod+i': 'italic',
@@ -29,10 +30,23 @@ const RichTextWriter = () => {
   const user = useSelector(state => state.authState.user, shallowEqual);
   const dispatch = useDispatch()
 
-
+  if(editorState.loading){
+    return(<div className={classes.spinner}>
+      <CircularProgress />
+    </div>);
+  }
 
   return (
     <Slate editor={editor} value={editorState.content.body} onChange={value => dispatch(updateDocumentContent(value))} >
+    <TextField 
+    fullWidth 
+    placeholder="Title" 
+    className={classes.titleInput} 
+    onChange={event => dispatch(setTitle(event.target.value))}
+    error={editorState.titleRequired}
+    helperText={editorState.titleRequired ? "Please enter a title" : ""}
+    value={editorState.content.title}
+    />
       <div className={classes.root}>
       <Button
         color="primary"
@@ -42,6 +56,10 @@ const RichTextWriter = () => {
           if(!user){
             // not logged in
             dispatch(showLoginScreen())
+            return;
+          }
+          if(!editorState.content.title){
+            dispatch(showTitleRequired())
             return;
           }
           dispatch(saveDocument())

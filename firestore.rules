@@ -12,9 +12,13 @@ service cloud.firestore {
       allow read: if get(/databases/$(database)/documents/accounts/$(account)).data.users[request.auth.uid] != null;
     }
     match /accounts/{account}/documents/{document} {
-      allow read, update, delete, create: if get(/databases/$(database)/documents/accounts/$(account)).data.users[request.auth.uid].role == 'admin' 
+      allow read, delete: if get(/databases/$(database)/documents/accounts/$(account)).data.users[request.auth.uid].role == 'admin';
+      allow update, create:  if get(/databases/$(database)/documents/accounts/$(account)).data.users[request.auth.uid].role == 'admin'
       && request.resource.data.title != null
       && request.resource.data.title != ""
+    }
+    match /accounts/{account}/documentList/{documentId} {
+      allow read, update, delete, create: if get(/databases/$(database)/documents/accounts/$(account)).data.users[request.auth.uid] != 'null' 
     }
   }
 }

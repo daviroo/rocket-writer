@@ -19,7 +19,25 @@ const RichTextWriterStyles = makeStyles(theme => ({
         position: "relative",
         zIndex: "99",
         float: "right"
-    }
+    },
+    titleInput: {
+        paddingLeft: "20px",
+        paddingRight: "20px",
+        '&::after': {
+          paddingLeft: "20px",
+        paddingRight: "20px",
+        },
+        '&::before': {
+          paddingLeft: "20px",
+        paddingRight: "20px",
+        }
+      },
+      spinner: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100%"
+      }
 }));
 
   export default RichTextWriterStyles;

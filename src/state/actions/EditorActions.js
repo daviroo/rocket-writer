@@ -80,3 +80,42 @@ export function removeKeyword(payload){
         payload: payload
     }
 }
+
+export const SHOW_TITLE_REQUIRED = "SHOW_TITLE_REQUIRED";
+export function showTitleRequired(){
+    return {
+        type: SHOW_TITLE_REQUIRED
+    }
+}
+
+export const SET_TITLE = "SET_TITLE";
+export function setTitle(payload){
+    return {
+        type: SET_TITLE,
+        payload: payload
+    }
+}
+
+export const LOAD_DOCUMENT = "LOAD_DOCUMENT";
+export function loadDocument(payload){
+    return {
+        type: LOAD_DOCUMENT,
+        payload: payload
+    }
+}
+
+export const LOAD_DOCUMENT_SUCCESS = "LOAD_DOCUMENT_SUCCESS";
+export function loadDocumentSuccess(payload){
+    return {
+        type: LOAD_DOCUMENT_SUCCESS,
+        payload: payload
+    }
+}
+
+export const LOAD_DOCUMENT_FAILED = "LOAD_DOCUMENT_FAILED";
+export function loadDocumentFailed(payload){
+    return {
+        type: LOAD_DOCUMENT_FAILED,
+        payload: payload
+    }
+}

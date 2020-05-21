@@ -13,6 +13,7 @@
     "immutable": "^4.0.0-rc.12",
     "is-hotkey": "^0.1.6",
     "material-icons": "^0.3.1",
+    "moment": "^2.26.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-firebaseui": "^4.1.0",

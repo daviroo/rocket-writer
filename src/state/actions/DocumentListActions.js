@@ -20,3 +20,17 @@ export function updateDocumentListFailed(payload){
         payload: payload
     }
 }
+
+export const SUBSCRIBE_TO_DOCUMENT_LIST = "SUBSCRIBE_TO_DOCUMENT_LIST";
+export function subscribeToDocumentList(){
+    return {
+        type: SUBSCRIBE_TO_DOCUMENT_LIST
+    }
+}
+
+export const UNSUBSCRIBE_FROM_DOCUMENT_LIST = "UNSUBSCRIBE_FROM_DOCUMENT_LIST";
+export function unsubscribeFromDocumentList(){
+    return {
+        type: UNSUBSCRIBE_FROM_DOCUMENT_LIST
+    }
+}

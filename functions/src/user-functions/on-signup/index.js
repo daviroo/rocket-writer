@@ -4,7 +4,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-exports.createAccount = functions.auth.user().onCreate(async (user) => {
+exports.onUserSignup = functions.region('europe-west1').auth.user().onCreate(async (user) => {
     const account = await admin.firestore().collection("accounts").add({
         users: {
             [user.uid]: {

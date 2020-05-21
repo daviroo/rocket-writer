@@ -9,6 +9,7 @@ import {
 } from "./state/actions/AuthActions";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
+import { subscribeToDocumentList } from "./state/actions/DocumentListActions";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -31,6 +32,7 @@ function Main() {
         .get()
         .then((doc) => {
             dispatch(updateAccountId(doc.data().account))
+            dispatch(subscribeToDocumentList());
             dispatch(loginSuccess(user));
         });
       } else {
