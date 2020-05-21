@@ -3,13 +3,14 @@ import LoginScreen from '../LoginScreen/LoginScreen';
 import { useSelector, useDispatch } from 'react-redux';
 import { showLoginScreen } from '../../state/actions/AuthActions';
 import firebase from '../../firebase';
-import {saveDocument} from "../../state/actions/EditorActions";
+import {saveDocument, setTitle} from "../../state/actions/EditorActions";
 import logo from './logo.svg';
 import plusIcon from './plusIcon.svg';
 
 
 const Header = () => {
     const userLoggedIn = useSelector(state => state.authState.userLoggedIn);
+    const title = useSelector(state => state.documentState.content.title);
     const dispatch = useDispatch()
 
     const handleClick = () => {
@@ -49,7 +50,7 @@ const Header = () => {
               
               <button className="delete-button">Delete</button>
 
-              <input className="document-title-input" type="text" placeholder="Give it a title..."></input>
+              <input className="document-title-input" type="text" placeholder="Give it a title..." value={title} onChange={e => dispatch(setTitle(e.target.value))}></input>
               </div>
             
           </div>

@@ -9,7 +9,7 @@ const DocumentsList = () => {
         <div>
             <DocSearch />
             <div>
-            {documentList.map(doc => <DocCard doc={doc} />)}
+            {documentList.sort((doc1, doc2) => doc1.lastUpdated.seconds < doc2.lastUpdated.seconds ? 1 : -1).map(doc => <DocCard doc={doc} />)}
             </div>
         </div>
     )
