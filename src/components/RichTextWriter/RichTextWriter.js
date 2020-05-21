@@ -4,12 +4,10 @@ import { Editable, withReact, useSlate, Slate } from 'slate-react'
 import { Editor, Transforms, createEditor } from 'slate'
 import { withHistory } from 'slate-history'
 import RichTextWriterStyles from './RichTextWriterStyles';
-import {FormatListNumbered, List, Save} from '@material-ui/icons';
-import {Button} from "@material-ui/core";
+import Toolbar from '../toolbar/Toolbar'
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { updateDocumentContent, saveDocument } from '../../state/actions/EditorActions'
-import { showLoginScreen } from '../../state/actions/AuthActions'
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -34,32 +32,8 @@ const RichTextWriter = () => {
   return (
     <Slate editor={editor} value={editorState.content.body} onChange={value => dispatch(updateDocumentContent(value))} >
       <div className={classes.root}>
-      <Button
-        color="primary"
-        startIcon={<Save />}
-        className={classes.saveButton}
-        onClick={() => {
-          if(!user){
-            // not logged in
-            dispatch(showLoginScreen())
-            return;
-          }
-          dispatch(saveDocument())
-          }}
-      >
-        Save
-      </Button>
-      <div className={classes.toolbar}>
-        <MarkButton format="bold" icon={<b>B</b>} />
-        <MarkButton format="italic" icon={<i>I</i>} />
-        <MarkButton format="underline" icon={<u>U</u>} />
-        <MarkButton format="code" icon={<span>&lt;&gt;</span>} />
-        <BlockButton format="heading-one" icon={<b>H1</b>} />
-        <BlockButton format="heading-two" icon={<b>H2</b>} />
-        <BlockButton format="block-quote" icon={<span>"</span>} />
-        <BlockButton format="numbered-list" icon={<FormatListNumbered />} />
-        <BlockButton format="bulleted-list" icon={<List />} />
-      </div>
+        <div className="text-editor-components">
+      <Toolbar />
       <KeyboardEventHandler
     handleKeys={['tab']}
     onKeyEvent={(key, e) => {
@@ -67,6 +41,7 @@ const RichTextWriter = () => {
       handleTab(editor)
       }} >
       <Editable
+        className="editable"
         renderElement={renderElement}
         renderLeaf={renderLeaf}
         placeholder="Start writing your document"
@@ -84,6 +59,7 @@ const RichTextWriter = () => {
       />
       </KeyboardEventHandler>
       </div>
+      </div>
     </Slate>
   )
 }
@@ -92,23 +68,9 @@ const handleTab = (editor) => {
   editor.insertText("\t");
 }
 
-const toggleBlock = (editor, format) => {
-  const isActive = isBlockActive(editor, format)
-  const isList = LIST_TYPES.includes(format)
-
-  Transforms.unwrapNodes(editor, {
-    match: n => LIST_TYPES.includes(n.type),
-    split: true,
-  })
-
-  Transforms.setNodes(editor, {
-    type: isActive ? 'paragraph' : isList ? 'list-item' : format,
-  })
-
-  if (!isActive && isList) {
-    const block = { type: format, children: [] }
-    Transforms.wrapNodes(editor, block)
-  }
+const isMarkActive = (editor, format) => {
+  const marks = Editor.marks(editor)
+  return marks ? marks[format] === true : false
 }
 
 const toggleMark = (editor, format) => {
@@ -121,49 +83,7 @@ const toggleMark = (editor, format) => {
   }
 }
 
-const isBlockActive = (editor, format) => {
-  const [match] = Editor.nodes(editor, {
-    match: n => n.type === format,
-  })
-  return !!match
-}
 
-const isMarkActive = (editor, format) => {
-  const marks = Editor.marks(editor)
-  return marks ? marks[format] === true : false
-}
-
-const BlockButton = ({ format, icon }) => {
-  const editor = useSlate()
-  const classes = RichTextWriterStyles();
-  return (
-    <Button
-    className={isBlockActive(editor, format) ? classes.activeButton : classes.inactiveButton}
-      onMouseDown={event => {
-        event.preventDefault()
-        toggleBlock(editor, format)
-      }}
-    >
-    {icon}
-    </Button>
-  )
-}
-
-const MarkButton = ({ format, icon }) => {
-  const editor = useSlate()
-  const classes = RichTextWriterStyles();
-  return (
-    <Button
-    className={isMarkActive(editor, format) ? classes.activeButton : classes.inactiveButton}
-      onMouseDown={event => {
-        event.preventDefault()
-        toggleMark(editor, format)
-      }}
-    >
-    {icon}
-    </Button>
-  )
-}
 
 const Element = ({ attributes, children, element }) => {
   switch (element.type) {

@@ -3,11 +3,15 @@ import { makeStyles } from "@material-ui/core/styles";
 const RichTextWriterStyles = makeStyles(theme => ({
     toolbar: {
         position: "relative",
-        marginBottom: "20px",
         borderBottom: "2px solid rgb(238, 238, 238)"
     },
     root: {
-        padding: "20px"
+        fontFamily: "itc-american-typewriter, serif",
+        fontWeight: "500",
+        fontStyle: "normal",
+        fontSize: "20px",
+        color: "#7A788D",
+        lineHeight: "1.8"
     },
     activeButton: {
         backgroundColor: "grey"
@@ -15,11 +19,7 @@ const RichTextWriterStyles = makeStyles(theme => ({
     inactiveButton: {
         backgroundColor: "white"
     },
-    saveButton: {
-        position: "relative",
-        zIndex: "99",
-        float: "right"
-    }
+    
 }));
 
   export default RichTextWriterStyles;

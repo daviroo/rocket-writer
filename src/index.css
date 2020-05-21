@@ -8,7 +8,248 @@ body {
   height: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+@supports(-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type='text'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#main {
+  padding: 0;
+  margin-top: 40px;
+  border: 0;
+  outline: 0;
+}
+
+.doc-sidebar {
+  width: 310px;
+  position: fixed;
+}
+
+.text-editor-container {
+  display: flex;
+  justify-content: center;
+  padding: 0px 270px;
+}
+
+.text-editor-components {
+  display: flex;
+  flex-basis: 36em;
+}
+
+.readibility-sidebar {
+  width: 300px;
+  margin-left: 20px;
+  font-size: 14px;
+  position: fixed;
+  height: 100%;
+  margin-right: 16px;
+  right: 0px;
+  overflow-y: scroll;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+.p-30 {
+  padding: 30px;
+}
+
+.p-20 {
+  padding: 20px;
+}
+
+.editable {
+  margin-top: -28px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  width: 700px;
+
+}
+
+.metric-card {
+  border: solid 1px #807FFF;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #807FFF;
+  position: relative;
+}
+
+.metric-card-header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: -40px;
+  left: 0;
+}
+
+.metric-card-lable {
+  background-color: #807FFF;
+  font-weight: bold;
+  font-size: 18px;
+  color: #ffffff;
+  border-radius: 40px;
+  padding: 5px 15px;
+}
+
+.saveButton {
+  position: relative;
+  z-index: 99;
+  float: right;
+  color: white;
+  background-color: black;
+}
+
+.toolbar {
+position: relative;
+margin-bottom: 20px;
+margin-left: 60px;
+margin-right: 60px;
+border-bottom: 2px solid rgb(238, 238, 238);
+border: solid 1px #B4B2C5;
+padding: 15px;
+border-radius: 8px;
+box-shadow: 0px 2px 2px rgb(180, 178, 197, .6);
+}
+
+.toolbar-button {
+  border: solid 1px red;
+}
+
+.navbar {
+  background-color: white;
+}
+
+.MuiPaper-elevation4 {
+  box-shadow: none !important;
+}
+
+.rocket-divider {
+  position: absolute;
+  z-index: -1;
+  top: 40px;
+  left: 0px;
+}
+
+.doc-search {
+  background-color: #807FFF;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 5px 15px;
+  font-weight: bold;
+  border: solid 1px #807FFF;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.doc-search::placeholder {
+  color: #ffffff
+}
+
+.doc-card {
+  background-color: #ffffff;
+  margin: 10px 0 20px 0px;
+  border-radius: 10px;
+  padding: 11px 5px 20px 40px;
+  box-shadow: 5px 5px 0px #807FFF;
+  position: relative;
+ 
+}
+
+.doc-card h3 {
+  color: #807FFF;
+}
+
+.doc-card h3::before {
+  content: "";
+  height: 15px;
+  width: 13px;
+  background-color: #807FFF;
+  position: absolute;
+  top: 34px;
+  left: 0px;
+
+}
+
+.doc-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+  background-color: #807FFF;
+  border-radius: 40px;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  right: -17px;
+  top: -8px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.doc-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.doc-card-attribute-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.doc-card-attribute-title {
+  margin-right: 10px;
+  color: #B4B2C5;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.doc-card-attribute-score {
+  margin-right: 20px;
+  color: #ffffff;
+  background-color: #92e7bd;
+  border-radius: 5px;
+  padding: 3px 8px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.doc-move-icon {
+  margin-right: 10px;
+  cursor: move;
+}
+
+.notification-card {
+  height: 70px;
+  background-color: #7FB0FF;
+  border-radius: 10px;
 }
