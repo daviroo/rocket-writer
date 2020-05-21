@@ -2,13 +2,13 @@ import React from 'react'
 import cross from './cross.svg';
 import moveHandle from './moveHandle.svg';
 
-const DocCard = () => {  
+const DocCard = ({doc}) => {  
     return (
         <div className="doc-card flex-col">
             <div className="doc-delete">
                 <img src={cross} alt="Delete Document Icon" />
             </div>
-            <h3>5 Life Hacks Article</h3>
+            <h3>{doc.title}</h3>
             <div className="doc-card-wrapper">
                 <div className="doc-card-wrapper">
                     <div className="doc-card-attribute-content">

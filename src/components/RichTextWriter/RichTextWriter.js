@@ -37,15 +37,6 @@ const RichTextWriter = () => {
 
   return (
     <Slate editor={editor} value={editorState.content.body} onChange={value => dispatch(updateDocumentContent(value))} >
-    <TextField 
-    fullWidth 
-    placeholder="Title" 
-    className={classes.titleInput} 
-    onChange={event => dispatch(setTitle(event.target.value))}
-    error={editorState.titleRequired}
-    helperText={editorState.titleRequired ? "Please enter a title" : ""}
-    value={editorState.content.title}
-    />
       <div className={classes.root}>
         <div className="text-editor-components">
       <Toolbar />
