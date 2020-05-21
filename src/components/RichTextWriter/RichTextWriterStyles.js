@@ -1,10 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const RichTextWriterStyles = makeStyles(theme => ({
-    toolbar: {
-        position: "relative",
-        borderBottom: "2px solid rgb(238, 238, 238)"
-    },
     root: {
         fontFamily: "itc-american-typewriter, serif",
         fontWeight: "500",

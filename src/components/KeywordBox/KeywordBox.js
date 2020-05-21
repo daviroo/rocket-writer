@@ -43,7 +43,7 @@ const KeywordBox = () => {
         }}
         options={[]}
         renderInput={(params) => (
-          <TextField {...params} variant="filled" placeholder="Targeted Keywords" />
+          <TextField className={classes.textField} {...params} placeholder="Enter Keywords" />
         )}
       />
         </div>

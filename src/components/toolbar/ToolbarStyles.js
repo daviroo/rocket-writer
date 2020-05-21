@@ -1,9 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const ToolbarStyles = makeStyles(theme => ({
-    autoCompleteBox: {
-      padding: theme.spacing(2),
-    },
 
     activeButton: {
       border: "solid 1px #807FFF",

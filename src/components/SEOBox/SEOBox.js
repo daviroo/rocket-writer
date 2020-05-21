@@ -11,6 +11,7 @@ function SEOBox(props) {
       <h4 className="metric-card-lable">{props.header}</h4>
       </div>
       <h1> Grade: {props.score}</h1>
+      <KeywordBox />
       <div>Keyword at beginning: {props.kwBeginning}</div>
       <div>Keyword in Content: {props.kwContent}</div>
       <div>Content Length: {props.words} words, consider at least 600 words</div>
@@ -18,7 +19,6 @@ function SEOBox(props) {
       <div>Keyword Density: {props.kwDensity}</div>
       <div>Outbound Links: {props.obLinks}</div>
       <div>Inbound Links: {props.ibLinks}</div>
-      <KeywordBox />
     </div>
   );
 }

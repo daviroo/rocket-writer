@@ -4,9 +4,14 @@ import {FormatListNumbered, List} from '@material-ui/icons';
 import {Button} from "@material-ui/core";
 import { Editor, Transforms } from 'slate'
 import ToolbarStyles from './ToolbarStyles';
+import formatIcon from './formatIcon.svg'
 
 const Toolbar = () => {
-return(<div className="toolbar flex-col">
+return(<div className="toolbar">
+    <div className="toolbar-header">
+      <img src={formatIcon} />
+    </div>
+    <div className="toolbar-tools">
     <MarkButton format="bold" icon={<b>B</b>} />
     <MarkButton format="italic" icon={<i>I</i>} />
     <MarkButton format="underline" icon={<u>U</u>} />
@@ -16,6 +21,7 @@ return(<div className="toolbar flex-col">
     <BlockButton format="block-quote" icon={<span>"</span>} />
     <BlockButton format="numbered-list" icon={<FormatListNumbered />} />
     <BlockButton format="bulleted-list" icon={<List />} />
+    </div>
   </div>)
 }
 

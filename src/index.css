@@ -1,3 +1,32 @@
+/******************** 
+Resets
+*********************/
+
+/*** SEO Keyword ***/
+.MuiInput-underline:before {
+  border: none !important;
+}
+
+.MuiInput-underline:after {
+  display: none !important;
+}
+
+.MuiInput-underline:before {
+  display: none !important;
+}
+
+/******************** 
+Global
+*********************/
+
+html {
+  height: 100%;
+}
+
+a {
+  color: #7FB0FF
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -24,39 +53,9 @@ code {
     monospace;
 }
 
-#main {
-  padding: 0;
-  margin-top: 40px;
-  border: 0;
-  outline: 0;
-}
-
-.doc-sidebar {
-  width: 310px;
-  position: fixed;
-}
-
-.text-editor-container {
-  display: flex;
-  justify-content: center;
-  padding: 0px 270px;
-}
-
-.text-editor-components {
-  display: flex;
-  flex-basis: 36em;
-}
-
-.readibility-sidebar {
-  width: 300px;
-  margin-left: 20px;
-  font-size: 14px;
-  position: fixed;
-  height: 100%;
-  margin-right: 16px;
-  right: 0px;
-  overflow-y: scroll;
-}
+/******************** 
+Quick Classes
+*********************/
 
 .flex-row {
   display: flex;
@@ -84,19 +83,250 @@ code {
   padding: 20px;
 }
 
+.mr-20 {
+  margin-right: 20px;
+}
+
+/******************** 
+Main Structure
+*********************/
+
+#main {
+  display: flex;
+  position: relative;
+  padding: 0;
+  margin-top: 20px;
+  border: 0;
+  outline: 0;
+}
+
+#main .doc-sidebar {
+  width: 310px;
+  overflow: auto
+}
+
+.doc-sidebar::-webkit-scrollbar, .text-editor-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+#main .text-editor-container {
+  position: relative;
+  flex: 1;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  overflow-y: scroll
+}
+
+#main .text-editor-container .text-editor-components {
+  display: flex;
+}
+
+#main .readibility-sidebar {
+  width: 300px;
+  font-size: 14px;
+  height: 100%;
+  right: 0px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/******************** 
+Shape Divider SVG
+*********************/
+
+.rocket-divider {
+  position: absolute;
+  z-index: -1;
+  top: -40px;
+  left: -1px;
+}
+
+/******************** 
+NavBar 
+*********************/
+
+.navbar {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.MuiPaper-elevation4 {
+  box-shadow: none !important;
+}
+
+.logo-container {
+ display: flex;
+ align-items: center;
+ width: 310px;
+ padding-left: 20px;
+}
+
+.actions-container {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.actions-wrapper {
+  width: 700px;
+  display: flex;
+  justify-content: center;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #807FFF;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  margin-right: 20px;
+  -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.save-button {
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #91e7bc;
+  height: 40px;
+  width: 144px;
+  border-radius: 8px;
+  margin-right: 20px;
+  -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.delete-button {
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #ffaab5;
+  height: 40px;
+  width: 144px;
+  border-radius: 8px;
+  margin-right: 20px;
+  -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.document-title-input {
+  background-color: #ffffff;
+  color: #B4B2C5;
+  font-size: 20px;
+  padding: 5px 15px;
+  height: 40px;
+  font-weight: bold;
+  border: solid 1px #B4B2C5;
+  border-radius: 4px;
+}
+
+.document-title-input::placeholder{
+  color: #B4B2C5
+}
+
+.menu-container {
+  width: 300px;
+  padding-right: 30px;
+}
+
+.menu-container ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.menu-container li, a{
+  font-size: 20px;
+  font-weight: 500;
+  color: #B4B2C5;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.menu-container li:hover, a:hover {
+  color: #807FFF;
+}
+
+
+/******************** 
+Text Editor
+*********************/
+
 .editable {
   margin-top: -28px;
   white-space: pre-wrap;
-  overflow-wrap: break-word;
   width: 700px;
+  overflow-wrap: break-word;
+  padding-left: 30px;
 
 }
+
+.toolbar {
+  position: fixed;
+  left:340px;
+  top: 115px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgb(238, 238, 238);
+  border: solid 1px #B4B2C5;
+  border-radius: 8px;
+  box-shadow: 0px 2px 2px rgb(180, 178, 197, .6);
+  }
+  
+  .toolbar-tools {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+  }
+  
+  .toolbar-header {
+    border-bottom: solid 1px #B4B2C5;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .toolbar-header img {
+    width: 20px;
+  }
+  
+  .MuiButton-root {
+    min-width: 0px !important;
+  }
+
+/******************** 
+Reading and SEO Metric
+*********************/
 
 .metric-card {
   border: solid 1px #807FFF;
   border-radius: 10px;
   box-shadow: 5px 5px 0px #807FFF;
   position: relative;
+  width: 260px;
 }
 
 .metric-card-header {
@@ -118,44 +348,19 @@ code {
   padding: 5px 15px;
 }
 
-.saveButton {
-  position: relative;
-  z-index: 99;
-  float: right;
-  color: white;
-  background-color: black;
+/******************** 
+Readibility Notification Cards
+*********************/
+
+.notification-card {
+  height: 70px;
+  background-color: #7FB0FF;
+  border-radius: 10px;
 }
 
-.toolbar {
-position: relative;
-margin-bottom: 20px;
-margin-left: 60px;
-margin-right: 60px;
-border-bottom: 2px solid rgb(238, 238, 238);
-border: solid 1px #B4B2C5;
-padding: 15px;
-border-radius: 8px;
-box-shadow: 0px 2px 2px rgb(180, 178, 197, .6);
-}
-
-.toolbar-button {
-  border: solid 1px red;
-}
-
-.navbar {
-  background-color: white;
-}
-
-.MuiPaper-elevation4 {
-  box-shadow: none !important;
-}
-
-.rocket-divider {
-  position: absolute;
-  z-index: -1;
-  top: 40px;
-  left: 0px;
-}
+/******************** 
+Document Search
+*********************/
 
 .doc-search {
   background-color: #807FFF;
@@ -172,13 +377,18 @@ box-shadow: 0px 2px 2px rgb(180, 178, 197, .6);
   color: #ffffff
 }
 
+/******************** 
+Document Card
+*********************/
+
 .doc-card {
   background-color: #ffffff;
   margin: 10px 0 20px 0px;
   border-radius: 10px;
-  padding: 11px 5px 20px 40px;
+  padding: 11px 5px 20px 30px;
   box-shadow: 5px 5px 0px #807FFF;
   position: relative;
+  width: 265px;
  
 }
 
@@ -248,8 +458,73 @@ box-shadow: 0px 2px 2px rgb(180, 178, 197, .6);
   cursor: move;
 }
 
-.notification-card {
-  height: 70px;
-  background-color: #7FB0FF;
-  border-radius: 10px;
+
+/******************** 
+Structure Improved
+*********************/
+
+.main-container {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.main-item:nth-child(1) {
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  order: 1;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+  display: flex;
+  justify-content: center;
+  border: solid 1px blue;
+}
+
+.main-item:nth-child(2) {
+  -webkit-order: 2;
+  -ms-flex-order: 2;
+  order: 2;
+  -webkit-flex: 2 2 auto;
+  -ms-flex: 2 2 auto;
+  flex: 2 2 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+  display: flex;
+  justify-content: center;
+  border: solid 1px red;
+}
+
+.main-item:nth-child(3) {
+  -webkit-order: 3;
+  -ms-flex-order: 3;
+  order: 3;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+  display: flex;
+  justify-content: center;
+  border: solid 1px blue;
 }

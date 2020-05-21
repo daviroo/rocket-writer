@@ -19,7 +19,15 @@ export default function Layout() {
       <section id="main" className="mt-40">
       <div className="rocket-divider"><img src={rocketDivider} alt="divider" /></div>
 
-      <div className="readibility-sidebar p-20">
+          <div className="doc-sidebar p-20">
+            <DocumentsList />
+          </div>
+
+          <div className="text-editor-container p-20">
+            <RichTextWriter />
+          </div>
+
+          <div className="readibility-sidebar p-20">
             <ReadibilityBox
               header="Readibility Score"
               score="6"
@@ -41,14 +49,6 @@ export default function Layout() {
               obLinks="2"
               ibLinks="6"
             />
-          </div>
-
-          <div className="doc-sidebar p-20">
-            <DocumentsList />
-          </div>
-          
-          <div className="text-editor-container p-20">
-            <RichTextWriter />
           </div>
 
 
