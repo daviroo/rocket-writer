@@ -4,27 +4,30 @@ import {Paper, Grid} from "@material-ui/core"
 import RichTextWriter from '../components/RichTextWriter/RichTextWriter'
 import ReadibilityBox from "../components/ReadibilityBox/ReadibilityBox";
 import SEOBox from "../components/SEOBox/SEOBox";
-import KeywordBox from "../components/KeywordBox/KeywordBox";
 import DocumentsList from '../components/DocumentList/DocumentsList'
 import Header from '../components/Header/Header'
 import {useSelector} from 'react-redux';
+import rocketDivider from './rocketDivider.svg'
+import Adverbs from "../components/Notifications/Adverbs"
 
 export default function Layout() {
     const classes = LayoutStyles();
-    const documentsList = useSelector(state => state.documentListState.docs);
     return (
-    <div className={classes.root}>
-  
-      <Grid container>
+      
+      <div>
       <Header />
-          <DocumentsList />
-        <Grid item xs={documentsList.length === 0 ? 10 : 8}>
-          <KeywordBox />
-          
+      <section id="main" className="mt-40">
+      <div className="rocket-divider"><img src={rocketDivider} alt="divider" /></div>
+
+          <div className="doc-sidebar p-20">
+            <DocumentsList />
+          </div>
+
+          <div className="text-editor-container p-20">
             <RichTextWriter />
-        </Grid>
-        <Grid item xs={2}>
-          <Paper className={classes.paper}>
+          </div>
+
+          <div className="readibility-sidebar p-20">
             <ReadibilityBox
               header="Readibility Score"
               score="6"
@@ -34,6 +37,7 @@ export default function Layout() {
               sentences="54"
               paragraphs="5"
             />
+            <Adverbs />
             <SEOBox
               header="SEO Score"
               score="Good"
@@ -45,9 +49,12 @@ export default function Layout() {
               obLinks="2"
               ibLinks="6"
             />
-          </Paper>
-        </Grid>
-      </Grid>
+          </div>
+
+
+          
+
+    </section>
     </div>
     )
 }

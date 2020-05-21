@@ -1,13 +1,14 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core"
-import LoginScreen from '../LoginScreen/LoginScreen'
-import HeaderStyles from './HeaderStyles';
+import LoginScreen from '../LoginScreen/LoginScreen';
 import { useSelector, useDispatch } from 'react-redux';
 import { showLoginScreen } from '../../state/actions/AuthActions';
 import firebase from '../../firebase';
+import {saveDocument} from "../../state/actions/EditorActions";
+import logo from './logo.svg';
+import plusIcon from './plusIcon.svg';
+
 
 const Header = () => {
-    const classes = HeaderStyles();
     const userLoggedIn = useSelector(state => state.authState.userLoggedIn);
     const dispatch = useDispatch()
 
@@ -19,15 +20,61 @@ const Header = () => {
     }
   }
     return (
-        <AppBar position="static">
-        <Toolbar variant="dense">
-          <Typography variant="h6" color="inherit">
-            Rocket Writer
-          </Typography>
-          <Button color="inherit" className={classes.button} onClick={() => handleClick()}>{!userLoggedIn ? "Login" : "Logout"}</Button>
-        </Toolbar>
-        <LoginScreen />
-      </AppBar>
+        <nav className="navbar">
+
+          <div className="logo-container">
+            <img src={logo} alt="Rocket Writer Logo" />
+          </div>
+
+          <div className="actions-container">
+
+            <div className="actions-wrapper">
+              <button className="add-button">
+                <img src={plusIcon} alt="Add Document Icon" />
+              </button>
+
+              <button
+                className="save-button"
+                onClick={() => {
+                  if(!userLoggedIn){
+                    // not logged in
+                    dispatch(showLoginScreen())
+                    return;
+                  }
+                  dispatch(saveDocument())
+                  }}
+              >
+                Save
+              </button>
+              
+              <button className="delete-button">Delete</button>
+
+              <input className="document-title-input" type="text" placeholder="Give it a title..."></input>
+              </div>
+            
+          </div>
+
+          <div className="menu-container">
+            <ul>
+              <li className="mr-20">
+                <a href="#">Help</a>
+              </li>
+              <li className="mr-20">
+                <a href="#">Contact</a>
+              </li>
+              <li onClick={() => 
+              handleClick()}>{!userLoggedIn ? "Login" : "Logout"}
+              </li >
+            </ul>
+          </div>
+
+
+
+          <LoginScreen />
+
+        </nav>
+        
+ 
     )
 }
 
