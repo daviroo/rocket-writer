@@ -6,7 +6,9 @@ import {
   UPDATE_WORD_COUNT,
   UPDATE_SENTENCE_COUNT,
   UPDATE_PARAGRAPH_COUNT,
+  RESET_READIBILITY_STATS_STATE,
 } from "../actions/ReadibilityActions";
+import { LOGOUT_SUCCESS } from "../actions/AuthActions";
 
 const initialState = {
   refreshingReadibilityStats: false,
@@ -45,6 +47,8 @@ export default function readibilityReducer(state = initialState, action) {
         ...state,
         stats: { ...state.stats, paragraphCount: action.payload },
       };
+    case RESET_READIBILITY_STATS_STATE:
+      return {...state, ...initialState}
     default:
       return state;
   }

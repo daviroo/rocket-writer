@@ -70,3 +70,17 @@ export function listenForAccountId(){
         type: LISTEN_FOR_ACCOUNT_ID
     }
 }
+
+export const SET_ANIMATION_FINISHED = "SET_ANIMATION_FINISHED";
+export function setAnimationFinished(){
+    return {
+        type: SET_ANIMATION_FINISHED
+    }
+}
+
+export const RESET_AUTH_STATE = "RESET_AUTH_STATE";
+export function resetAuthState(){
+    return {
+        type: RESET_AUTH_STATE
+    }
+}

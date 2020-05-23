@@ -9,7 +9,12 @@ import {
   logoutSuccess,
   LOGOUT,
   listenForAccountId,
+  LOGOUT_SUCCESS,
+  resetAuthState,
 } from "../actions/AuthActions";
+import { resetDocumentListState } from "../actions/DocumentListActions";
+import { resetEditorState } from "../actions/EditorActions";
+import { resetReadibilityStatsState } from "../actions/ReadibilityActions";
 const db = firebase.firestore();
 
 function firebaseLoginEventsEmitter() {
@@ -101,6 +106,13 @@ function* listenForAccountIdEvents() {
   }
 }
 
+function* resetState(){
+    yield put(resetAuthState());
+    yield put(resetDocumentListState());
+    yield put(resetEditorState());
+    yield put(resetReadibilityStatsState());
+}
+
 export default function* authSaga() {
   yield takeLatest(
     LISTEN_FOR_FIREBASE_AUTH_EVENTS, listenForFirebaseLoginEvents
@@ -109,4 +121,5 @@ export default function* authSaga() {
     LISTEN_FOR_FIREBASE_AUTH_EVENTS, listenForFirebaseLogoutEvents
   );
   yield takeLatest(LISTEN_FOR_ACCOUNT_ID, listenForAccountIdEvents);
+  yield takeLatest(LOGOUT_SUCCESS, resetState)
 }

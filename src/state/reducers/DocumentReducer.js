@@ -8,6 +8,7 @@ import {
   LOAD_DOCUMENT,
   LOAD_DOCUMENT_SUCCESS,
   LOAD_DOCUMENT_FAILED,
+  RESET_EDITOR_STATE,
 } from "../actions/EditorActions";
 
 const initialState = {
@@ -59,6 +60,8 @@ export default function documentReducer(state = initialState, action) {
       return {...state, loading: false, content: action.payload.content, id: action.payload.id}
     case LOAD_DOCUMENT_FAILED:
       return {...state, loading: false, componentError: action.payload}
+    case RESET_EDITOR_STATE:
+      return {...state, ...initialState}
     default:
       return state;
   }

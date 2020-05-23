@@ -53,3 +53,10 @@ export function updateParagraphCount(payload){
         payload: payload
     }
 }
+
+export const RESET_READIBILITY_STATS_STATE = "RESET_READIBILITY_STATS_STATE";
+export function resetReadibilityStatsState(){
+    return {
+        type: RESET_READIBILITY_STATS_STATE
+    }
+}

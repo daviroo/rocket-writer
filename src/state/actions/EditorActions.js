@@ -119,3 +119,34 @@ export function loadDocumentFailed(payload){
         payload: payload
     }
 }
+
+export const RESET_EDITOR_STATE = "RESET_EDITOR_STATE";
+export function resetEditorState(){
+    return {
+        type: RESET_EDITOR_STATE
+    }
+}
+
+export const DELETE_DOCUMENT = "DELETE_DOCUMENT";
+export function deleteDocument(payload){
+    return{
+        type: DELETE_DOCUMENT,
+        payload: payload
+    }
+}
+
+export const DELETE_DOCUMENT_SUCCESS = "DELETE_DOCUMENT_SUCCESS";
+export function deleteDocumentSuccess(payload){
+    return{
+        type: DELETE_DOCUMENT_SUCCESS,
+        payload: payload
+    }
+}
+
+export const DELETE_DOCUMENT_FAILED = "DELETE_DOCUMENT_FAILED";
+export function deleteDocumentFailed(payload){
+    return{
+        type: DELETE_DOCUMENT_FAILED,
+        payload: payload
+    }
+}

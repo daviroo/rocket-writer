@@ -1,5 +1,5 @@
-import { put, takeLatest, select } from "redux-saga/effects";
-import { SAVE_DOCUMENT, updateDocumentId, saveDocumentSuccess, saveDocumentFailed, LOAD_DOCUMENT, loadDocumentSuccess, loadDocumentFailed } from "../actions/EditorActions";
+import { put, takeLatest, select, takeEvery } from "redux-saga/effects";
+import { SAVE_DOCUMENT, updateDocumentId, saveDocumentSuccess, saveDocumentFailed, LOAD_DOCUMENT, loadDocumentSuccess, loadDocumentFailed, DELETE_DOCUMENT, deleteDocumentFailed, deleteDocumentSuccess, DELETE_DOCUMENT_SUCCESS, resetEditorState } from "../actions/EditorActions";
 import firebase from '../../firebase';
 const db = firebase.firestore();
 
@@ -36,7 +36,31 @@ function* loadDocument(action){
     }
 }
 
+function* deleteDocument(action){
+    try{
+        const accountId = yield select(state => state.authState.accountId);
+        yield db.collection(`accounts/${accountId}/documents/`).doc(`${action.payload}`).delete()
+        yield put(deleteDocumentSuccess(action.payload))
+    }catch(e){
+        console.log(e)
+        yield put(deleteDocumentFailed(e.message));
+    }
+}
+
+function* checkIfDocumentNeedsCleared(action){
+    try{
+        const currentDocumentId = yield select(state => state.documentState.id);
+        if(currentDocumentId === action.payload){
+            yield put(resetEditorState());
+        }
+    }catch(e){
+        console.log(e)
+    }
+}
+
 export default function* documentSaga(){
     yield takeLatest(SAVE_DOCUMENT, saveDocument);
-    yield takeLatest(LOAD_DOCUMENT, loadDocument)
+    yield takeLatest(LOAD_DOCUMENT, loadDocument);
+    yield takeEvery(DELETE_DOCUMENT, deleteDocument);
+    yield takeEvery(DELETE_DOCUMENT_SUCCESS, checkIfDocumentNeedsCleared)
 }
