@@ -7,22 +7,18 @@ import {
   logoutSuccess,
   updateAccountId,
 } from "./state/actions/AuthActions";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import Loader from "./components/Loader/Loader"
 import { makeStyles } from "@material-ui/core/styles";
 import { subscribeToDocumentList } from "./state/actions/DocumentListActions";
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "100%"
-  }
+  
 }));
 
 function Main() {
   const styles = useStyles();
   const dispatch = useDispatch();
   const appLoaded = useSelector((state) => state.authState.appLoaded);
+  const animationFinished = useSelector((state) => state.authState.animationFinished);
   if (!appLoaded) {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
@@ -40,10 +36,10 @@ function Main() {
       }
     });
   }
-  if (!appLoaded) {
+  if (!appLoaded || !animationFinished) {
     return (
       <div className={styles.root}>
-        <CircularProgress />
+        <Loader />
       </div>
     );
   }

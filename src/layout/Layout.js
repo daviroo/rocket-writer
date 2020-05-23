@@ -1,12 +1,10 @@
 import React from 'react'
 import LayoutStyles from './LayoutStyles';
-import {Paper, Grid} from "@material-ui/core"
 import RichTextWriter from '../components/RichTextWriter/RichTextWriter'
 import ReadibilityBox from "../components/ReadibilityBox/ReadibilityBox";
 import SEOBox from "../components/SEOBox/SEOBox";
 import DocumentsList from '../components/DocumentList/DocumentsList'
 import Header from '../components/Header/Header'
-import {useSelector} from 'react-redux';
 import rocketDivider from './rocketDivider.svg'
 import Adverbs from "../components/Notifications/Adverbs"
 

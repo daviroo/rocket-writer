@@ -56,3 +56,10 @@ export function updateAccountId(payload){
         payload: payload
     }
 }
+
+export const SET_ANIMATION_FINISHED = "SET_ANIMATION_FINISHED";
+export function setAnimationFinished(){
+    return {
+        type: SET_ANIMATION_FINISHED
+    }
+}
