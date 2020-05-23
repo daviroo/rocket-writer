@@ -77,3 +77,10 @@ export function setAnimationFinished(){
         type: SET_ANIMATION_FINISHED
     }
 }
+
+export const RESET_AUTH_STATE = "RESET_AUTH_STATE";
+export function resetAuthState(){
+    return {
+        type: RESET_AUTH_STATE
+    }
+}

@@ -119,3 +119,10 @@ export function loadDocumentFailed(payload){
         payload: payload
     }
 }
+
+export const RESET_EDITOR_STATE = "RESET_EDITOR_STATE";
+export function resetEditorState(){
+    return {
+        type: RESET_EDITOR_STATE
+    }
+}

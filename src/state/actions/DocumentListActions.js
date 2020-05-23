@@ -34,3 +34,10 @@ export function unsubscribeFromDocumentList(){
         type: UNSUBSCRIBE_FROM_DOCUMENT_LIST
     }
 }
+
+export const RESET_DOCUMENT_LIST_STATE = "RESET_DOCUMENT_LIST_STATE";
+export function resetDocumentListState(){
+    return {
+        type: RESET_DOCUMENT_LIST_STATE
+    }
+}
