@@ -23,22 +23,25 @@ html {
   height: 100%;
 }
 
-a {
-  color: #7FB0FF
-}
-
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
 }
 
 * {
   box-sizing: border-box;
+}
+
+a {
+  color: #7FB0FF
 }
 
 @supports(-webkit-appearance: none) or (-moz-appearance: none) {
@@ -91,46 +94,47 @@ Quick Classes
 Main Structure
 *********************/
 
+#main-wrapper {
+  height: 100%
+}
+
 #main {
-  display: flex;
-  position: relative;
-  padding: 0;
-  margin-top: 20px;
-  border: 0;
-  outline: 0;
+  margin-top: 120px;
 }
 
-#main .doc-sidebar {
-  width: 310px;
-  overflow: auto
-}
-
-.doc-sidebar::-webkit-scrollbar, .text-editor-container::-webkit-scrollbar {
-  width: 5px;
-}
-
-#main .text-editor-container {
-  position: relative;
-  flex: 1;
+.doc-sidebar {
+  width: 325px;
+  position: fixed;
   padding-left: 20px;
-  padding-right: 20px;
-  display: flex;
-  justify-content: center;
-  flex: 1;
-  overflow-y: scroll
 }
 
-#main .text-editor-container .text-editor-components {
-  display: flex;
-}
-
-#main .readibility-sidebar {
+.doc-list-map {
   width: 300px;
-  font-size: 14px;
+  position: fixed;
+  height: 75vh;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.text-editor-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  padding: 0px 270px;
+}
+.text-editor-components {
+  display: flex;
+
+}
+
+.readibility-sidebar {
+  width: 300px;
+  font-size: 16px;
+  position: fixed;
   height: 100%;
   right: 0px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  padding-right: 20px;
 }
 
 /******************** 
@@ -138,9 +142,9 @@ Shape Divider SVG
 *********************/
 
 .rocket-divider {
-  position: absolute;
+  position: fixed;
   z-index: -1;
-  top: -40px;
+  top: 65px;
   left: -1px;
 }
 
@@ -149,10 +153,14 @@ NavBar
 *********************/
 
 .navbar {
+  position: fixed;
   background-color: white;
   display: flex;
   justify-content: space-between;
-  padding-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  top: 0px;
 }
 
 .MuiPaper-elevation4 {
@@ -176,7 +184,7 @@ NavBar
 }
 
 .actions-wrapper {
-  width: 700px;
+
   display: flex;
   justify-content: center;
 }
@@ -276,19 +284,18 @@ Text Editor
 *********************/
 
 .editable {
-  margin-top: -28px;
+  margin-top: -15px;
   white-space: pre-wrap;
-  width: 700px;
   overflow-wrap: break-word;
   padding-left: 30px;
-
+  padding-right: 30px;
 }
+
+
 
 .toolbar {
   position: fixed;
-  left:340px;
-  top: 115px;
-  margin-bottom: 20px;
+  margin-left: -80px;
   border-bottom: 2px solid rgb(238, 238, 238);
   border: solid 1px #B4B2C5;
   border-radius: 8px;
@@ -326,17 +333,14 @@ Reading and SEO Metric
   border-radius: 10px;
   box-shadow: 5px 5px 0px #807FFF;
   position: relative;
-  width: 260px;
+  width: 100%;
 }
 
 .metric-card-header {
   display: flex;
   justify-content: center;
   width: 100%;
-  position: absolute;
-  z-index: 1;
-  top: -40px;
-  left: 0;
+  
 }
 
 .metric-card-lable {
@@ -346,6 +350,8 @@ Reading and SEO Metric
   color: #ffffff;
   border-radius: 40px;
   padding: 5px 15px;
+  position: absolute;
+  top: -42px;
 }
 
 /******************** 
@@ -370,7 +376,8 @@ Document Search
   font-weight: bold;
   border: solid 1px #807FFF;
   border-radius: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  width: 265px;
 }
 
 .doc-search::placeholder {
@@ -389,11 +396,13 @@ Document Card
   box-shadow: 5px 5px 0px #807FFF;
   position: relative;
   width: 265px;
+  cursor: pointer;
  
 }
 
 .doc-card h3 {
   color: #807FFF;
+  margin: 15px 0;
 }
 
 .doc-card h3::before {
@@ -402,7 +411,7 @@ Document Card
   width: 13px;
   background-color: #807FFF;
   position: absolute;
-  top: 34px;
+  top: 30px;
   left: 0px;
 
 }
@@ -617,3 +626,34 @@ Loader
   50% { width: 8px; height: 8px; margin-left: -4px; margin-top: 0; }
   90%, 100% { width: 16px; height: 16px;  margin-left: -8px;  margin-top: -4px; }
 }
+
+
+/******************** 
+Media Queries
+*********************/
+
+@media only screen and (max-width: 1500px) {
+  .doc-sidebar, .rocket-divider {
+    display: none;
+  }
+  .text-editor-container {
+    padding: 0px 40px;
+}
+  
+}
+
+@media only screen and (max-width: 900px) {
+  .readibility-sidebar {
+    display: none;
+  }
+
+  .toolbar {
+    margin-left: 0;
+  }
+
+  .editable {
+    margin-left: 80px;
+  }
+  
+}
+
