@@ -5,19 +5,30 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import firebase from '../../firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 // import LoginScreenStyles from './LoginScreenStyles';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { hideLoginScreen } from '../../state/actions/AuthActions';
 
-const uiConfig = {
-  signInFlow: 'popup',
-  credentialHelper: 'none',
-  signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-  ],
-};
+
 const LoginScreen = () => {
   const showLoginScreen = useSelector(state => state.authState.showLoginScreen)
-    
+  const dispatch = useDispatch();
+  const uiConfig = {
+    signInFlow: 'popup',
+    credentialHelper: 'none',
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    ],
+    callbacks: {
+      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        // User successfully signed in.
+        // Return type determines whether we continue the redirect automatically
+        // or whether we leave that to developer to handle.
+        dispatch(hideLoginScreen())
+        return false;
+      }
+    },
+  };   
    
     // placeholder
     // const classes = LoginScreenStyles();

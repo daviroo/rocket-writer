@@ -56,3 +56,17 @@ export function updateAccountId(payload){
         payload: payload
     }
 }
+
+export const LISTEN_FOR_FIREBASE_AUTH_EVENTS = "LISTEN_FOR_FIREBASE_AUTH_EVENTS";
+export function listenForFirebaseAuthEvents(){
+    return {
+        type: LISTEN_FOR_FIREBASE_AUTH_EVENTS
+    }
+}
+
+export const LISTEN_FOR_ACCOUNT_ID = "LISTEN_FOR_ACCOUNT_ID";
+export function listenForAccountId(){
+    return {
+        type: LISTEN_FOR_ACCOUNT_ID
+    }
+}

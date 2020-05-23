@@ -15,7 +15,7 @@ export function authReducer(state = initialState, action){
         case HIDE_LOGIN_SCREEN:
             return {...state, showLoginScreen: false}
         case LOGIN_SUCCESS:
-            return {...state, showLoginScreen: false, user: action.payload, userLoggedIn: true, appLoaded: true}
+            return {...state, showLoginScreen: false, user: action.payload, userLoggedIn: true}
         case LOGOUT:
             return {...state, logoutInProgress: true}
         case LOGOUT_SUCCESS:
@@ -25,7 +25,7 @@ export function authReducer(state = initialState, action){
         case AUTHENTICATION_FAILED:
             return {...state, user: null, userLoggedIn: false, showLoginScreen: true}
         case UPDATE_ACCOUNT_ID:
-            return {...state, accountId: action.payload}
+            return {...state, accountId: action.payload, appLoaded: true}
         default:
             return state;
     }
