@@ -70,3 +70,10 @@ export function listenForAccountId(){
         type: LISTEN_FOR_ACCOUNT_ID
     }
 }
+
+export const SET_ANIMATION_FINISHED = "SET_ANIMATION_FINISHED";
+export function setAnimationFinished(){
+    return {
+        type: SET_ANIMATION_FINISHED
+    }
+}

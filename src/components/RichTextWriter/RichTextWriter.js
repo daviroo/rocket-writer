@@ -4,7 +4,6 @@ import { Editable, withReact, Slate } from 'slate-react'
 import { Editor, createEditor } from 'slate'
 import { withHistory } from 'slate-history'
 import RichTextWriterStyles from './RichTextWriterStyles';
-import {TextField} from "@material-ui/core";
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { updateDocumentContent, setTitle } from '../../state/actions/EditorActions'
