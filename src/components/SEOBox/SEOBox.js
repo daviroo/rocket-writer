@@ -12,13 +12,16 @@ function SEOBox(props) {
       </div>
       <h1> Grade: {props.score}</h1>
       <KeywordBox />
-      <div>Keyword at beginning: {props.kwBeginning}</div>
-      <div>Keyword in Content: {props.kwContent}</div>
-      <div>Content Length: {props.words} words, consider at least 600 words</div>
-      <div>Keyword in headings: {props.kwHeadings}</div>
-      <div>Keyword Density: {props.kwDensity}</div>
-      <div>Outbound Links: {props.obLinks}</div>
-      <div>Inbound Links: {props.ibLinks}</div>
+      <ul>
+      <li>Keyword at beginning: {props.kwBeginning}</li>
+      <li>Keyword in Content: {props.kwContent}</li>
+      <li>Content Length: {props.words} words</li>
+      <li>Keyword in headings: {props.kwHeadings}</li>
+      <li>Keyword Density: {props.kwDensity}</li>
+      <li>Outbound Links: {props.obLinks}</li>
+      <li>Inbound Links: {props.ibLinks}</li>
+      </ul>
+      
     </div>
   );
 }

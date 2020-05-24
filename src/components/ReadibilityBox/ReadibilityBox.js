@@ -10,11 +10,13 @@ function ReadibilityBox(props) {
       <h4 className="metric-card-lable">{props.header}</h4>
       </div>
       <h1> Grade {props.score}</h1>
-      <div>Reading time: {props.readingTime}</div>
-      <div>Characters: {stats.charCount}</div>
-      <div>Words: {stats.wordCount}</div>
-      <div>Sentences: {stats.sentenceCount}</div>
-      <div>Paragraphs: {stats.paragraphCount}</div>
+      <ul>
+      <li>Reading time: {props.readingTime}</li>
+      <li>Characters: {stats.charCount}</li>
+      <li>Words: {stats.wordCount}</li>
+      <li>Sentences: {stats.sentenceCount}</li>
+      <li>Paragraphs: {stats.paragraphCount}</li>
+      </ul>
     </div>
   );
 }
