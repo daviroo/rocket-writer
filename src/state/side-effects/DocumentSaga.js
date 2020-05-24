@@ -1,19 +1,24 @@
 import { put, takeLatest, select, takeEvery } from "redux-saga/effects";
 import { SAVE_DOCUMENT, updateDocumentId, saveDocumentSuccess, saveDocumentFailed, LOAD_DOCUMENT, loadDocumentSuccess, loadDocumentFailed, DELETE_DOCUMENT, deleteDocumentFailed, deleteDocumentSuccess, DELETE_DOCUMENT_SUCCESS, resetEditorState } from "../actions/EditorActions";
 import firebase from '../../firebase';
+import { addDocToDocList } from "../actions/DocumentListActions";
 const db = firebase.firestore();
 
 function* saveDocument(){
     try{
         const documentState = yield select(state => state.documentState);
         const accountId = yield select(state => state.authState.accountId);
+        var doc;
         if(documentState.id){
-            yield db.doc(`accounts/${accountId}/documents/${documentState.id}`).update(documentState.content)
+            doc = yield db.doc(`accounts/${accountId}/documents/${documentState.id}`).update(documentState.content)
         } else {
-            const doc = yield db.collection(`accounts/${accountId}/documents/`).add(documentState.content);
+            doc = yield db.collection(`accounts/${accountId}/documents/`).add(documentState.content)
             yield put(updateDocumentId(doc.id))
         }
+        console.log(doc)
+        
         yield put(saveDocumentSuccess());
+        yield put(addDocToDocList({id: doc.id, title: documentState.content.title, lastUpdated: firebase.firestore.FieldValue.serverTimestamp()}))
     } catch(e){
         console.log(e)
         yield put(saveDocumentFailed(e.message))
