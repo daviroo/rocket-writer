@@ -51,9 +51,10 @@ export function saveDocument(){
 }
 
 export const SAVE_DOCUMENT_SUCCESS = "SAVE_DOCUMENT_SUCCESS";
-export function saveDocumentSuccess(){
+export function saveDocumentSuccess(payload){
     return {
-        type: SAVE_DOCUMENT_SUCCESS
+        type: SAVE_DOCUMENT_SUCCESS,
+        payload: payload
     }
 }
 

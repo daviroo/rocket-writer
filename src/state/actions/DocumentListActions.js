@@ -41,3 +41,11 @@ export function resetDocumentListState(){
         type: RESET_DOCUMENT_LIST_STATE
     }
 }
+
+export const ADD_DOC_TO_DOC_LIST = "ADD_DOC_TO_DOC_LIST";
+export function addDocToDocList(payload){
+    return {
+        type: ADD_DOC_TO_DOC_LIST,
+        payload: payload
+    }
+}
