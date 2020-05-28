@@ -15,10 +15,10 @@ function* saveDocument(){
             doc = yield db.collection(`accounts/${accountId}/documents/`).add(documentState.content)
             yield put(updateDocumentId(doc.id))
         }
-        console.log(doc)
-        
         yield put(saveDocumentSuccess());
-        yield put(addDocToDocList({id: doc.id, title: documentState.content.title, lastUpdated: firebase.firestore.FieldValue.serverTimestamp()}))
+        if(doc){
+            yield put(addDocToDocList({id: doc.id, title: documentState.content.title, lastUpdated: firebase.firestore.FieldValue.serverTimestamp()}))
+        }
     } catch(e){
         console.log(e)
         yield put(saveDocumentFailed(e.message))
