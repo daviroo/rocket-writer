@@ -7,7 +7,9 @@ const RichTextWriterStyles = makeStyles(theme => ({
         fontStyle: "normal",
         fontSize: "20px",
         color: "#7A788D",
-        lineHeight: "1.8"
+        lineHeight: "1.8",
+        flexBasis: "36em",
+        maxWidth: "700px"
     },
     activeButton: {
         backgroundColor: "grey"
