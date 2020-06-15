@@ -151,3 +151,19 @@ export function deleteDocumentFailed(payload){
         payload: payload
     }
 }
+
+export const UPDATE_DOCUMENT_WARNINGS = "UPDATE_DOCUMENT_WARNINGS";
+export function updateDocumentWarnings(payload){
+    return {
+        type: UPDATE_DOCUMENT_WARNINGS,
+        payload: payload
+    }
+}
+
+export const UPDATE_SELECTED_WARNING_SENTENCE = "UPDATE_SELECTED_WARNING_SENTENCE";
+export function updateSelectedWarningSentence(payload){
+    return {
+        type: UPDATE_SELECTED_WARNING_SENTENCE,
+        payload: payload
+    }
+}

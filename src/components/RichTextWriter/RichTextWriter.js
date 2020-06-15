@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import isHotkey from "is-hotkey";
 import { Editable, withReact, Slate, ReactEditor } from "slate-react";
-import { Editor, createEditor, Node } from "slate";
+import { Editor, createEditor, Text } from "slate";
 import { withHistory } from "slate-history";
 import RichTextWriterStyles from "./RichTextWriterStyles";
 import KeyboardEventHandler from "react-keyboard-event-handler";
@@ -28,8 +28,35 @@ const RichTextWriter = () => {
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
   const editorState = useSelector((state) => state.documentState, shallowEqual);
-  const user = useSelector((state) => state.authState.user, shallowEqual);
   const dispatch = useDispatch();
+  const {selectedWarningSentence} = editorState;
+  const decorate = useCallback(
+    ([node, path]) => {
+      const ranges = []
+          if (selectedWarningSentence && Text.isText(node)) {
+        const { text } = node
+        
+        const textWithoutNewlines = text.replace(/\r?\n|\r/g, "")
+        const parts = textWithoutNewlines.split(selectedWarningSentence)
+        let offset = 0
+
+        parts.forEach((part, i) => {
+          if (i !== 0) {
+            ranges.push({
+              anchor: { path, offset: offset - text.length },
+              focus: { path, offset },
+              highlight: true,
+            })
+          }
+
+          offset = offset + part.length + text.length
+        })
+      }
+
+      return ranges
+    },
+    [selectedWarningSentence]
+  )
 
   if (editorState.loading) {
     return (
@@ -71,6 +98,7 @@ const RichTextWriter = () => {
                   }
                 }
               }}
+              decorate={decorate}
             />
           </KeyboardEventHandler>
         </div>
@@ -103,23 +131,37 @@ const Element = ({ attributes, children, element }) => {
     case "block-quote":
       return <blockquote {...attributes}>{children}</blockquote>;
     case "bulleted-list":
-      return <ul {...attributes}>{children}</ul>;
+      return <ul style={{
+        backgroundColor: element.highlight && '#ffeeba'
+      }} {...attributes}>{children}</ul>;
     case "heading-one":
-      return <h1 {...attributes}>{children}</h1>;
+      return <h1 style={{
+        backgroundColor: element.highlight && '#ffeeba'
+      }} {...attributes}>{children}</h1>;
     case "heading-two":
-      return <h2 {...attributes}>{children}</h2>;
+      return <h2 style={{
+        backgroundColor: element.highlight && '#ffeeba'
+      }} {...attributes}>{children}</h2>;
     case "list-item":
-      return <li {...attributes}>{children}</li>;
+      return <li style={{
+        backgroundColor: element.highlight && '#ffeeba'
+      }} {...attributes}>{children}</li>;
     case "numbered-list":
-      return <ol {...attributes}>{children}</ol>;
+      return <ol style={{
+        backgroundColor: element.highlight && '#ffeeba'
+      }} {...attributes}>{children}</ol>;
     default:
-      return <p {...attributes}>{children}</p>;
+      return <p style={{
+        backgroundColor: `${element.highlight && '#ffeeba'}`
+      }} {...attributes}>{children}</p>;
   }
 };
 
 const Leaf = ({ attributes, children, leaf }) => {
   if (leaf.bold) {
-    children = <strong>{children}</strong>;
+    children = <strong style={{
+      backgroundColor: leaf.highlight && '#ffeeba'
+    }}>{children}</strong>;
   }
   if (leaf.code) {
     children = <code>{children}</code>;
@@ -133,7 +175,9 @@ const Leaf = ({ attributes, children, leaf }) => {
     children = <u>{children}</u>;
   }
 
-  return <span {...attributes}>{children}</span>;
+  return <span style={{
+    backgroundColor: `${leaf.highlight && '#ffeeba'}`
+  }} {...attributes}>{children}</span>;
 };
 
 export default RichTextWriter;

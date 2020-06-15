@@ -384,6 +384,28 @@ Readibility Notification Cards
   height: 70px;
   background-color: #7FB0FF;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+
+.notification-count {
+  flex-grow: 1;
+  margin: 15px;
+  color: white;
+  border-color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.notification-description {
+  flex-grow: 8;
+  margin: 5px;
+  color: white;
 }
 
 /******************** 

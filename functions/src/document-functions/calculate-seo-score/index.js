@@ -26,7 +26,7 @@ exports.calculateSeoScore = functions
       var text = "";
       paragraphs.forEach((section) =>
         section.children.forEach(
-          (leaf) => (text = text.concat(leaf.text + " "))
+          (leaf) => (text = text.concat(leaf.text))
         )
       );
 
@@ -64,11 +64,11 @@ exports.calculateSeoScore = functions
             syntax.tokens[part.dependencyEdge.headTokenIndex].text.beginOffset,
         });
 
-        if(part.dependencyEdge.label === "ADV"){
+        if(["ADV","ADVCL","ADVMOD"].includes(part.dependencyEdge.label)){
             adverbCount = ++adverbCount;
         }
 
-        if(part.partOfSpeech.voice === "PASSIVE"){
+        if(["PASSIVE"].includes(part.partOfSpeech.voice)){
             passiveVoiceCount = ++passiveVoiceCount;
         }
         if (isEndOfSentence(part)) {
