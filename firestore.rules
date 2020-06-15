@@ -17,6 +17,9 @@ service cloud.firestore {
       && request.resource.data.title != null
       && request.resource.data.title != ""
     }
+    match /accounts/{account}/documentWarnings/{document} {
+      allow read: if get(/databases/$(database)/documents/accounts/$(account)).data.users[request.auth.uid].role == 'admin';
+    }
     match /accounts/{account}/documentList/{documentId} {
       allow read, update, delete, create: if get(/databases/$(database)/documents/accounts/$(account)).data.users[request.auth.uid] != 'null' 
     }

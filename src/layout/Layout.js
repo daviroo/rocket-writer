@@ -6,11 +6,10 @@ import SEOBox from "../components/SEOBox/SEOBox";
 import DocumentsList from '../components/DocumentList/DocumentsList'
 import Header from '../components/Header/Header'
 import rocketDivider from './rocketDivider.svg'
-import Adverbs from "../components/Notifications/Adverbs"
 import DocSearch from '../components/DocSearch/DocSearch'
+import Warnings from '../components/Warnings';
 
 export default function Layout() {
-    const classes = LayoutStyles();
     return (
       
       <div id="main-wrapper">
@@ -34,7 +33,7 @@ export default function Layout() {
                 sentences="54"
                 paragraphs="5"
               />
-              <Adverbs />
+              <Warnings />
               <SEOBox
                 header="SEO Score"
                 score="Good"

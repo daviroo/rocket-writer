@@ -9,6 +9,8 @@ import {
   LOAD_DOCUMENT_SUCCESS,
   LOAD_DOCUMENT_FAILED,
   RESET_EDITOR_STATE,
+  UPDATE_DOCUMENT_WARNINGS,
+  UPDATE_SELECTED_WARNING_SENTENCE,
 } from "../actions/EditorActions";
 
 const initialState = {
@@ -25,7 +27,9 @@ const initialState = {
   },
   titleRequired: false,
   loading: false,
-  componentError: null
+  componentError: null,
+  warnings: {},
+  selectedWarningSentence: ""
 };
 
 export default function documentReducer(state = initialState, action) {
@@ -62,6 +66,10 @@ export default function documentReducer(state = initialState, action) {
       return {...state, loading: false, componentError: action.payload}
     case RESET_EDITOR_STATE:
       return {...state, ...initialState}
+    case UPDATE_DOCUMENT_WARNINGS:
+      return {...state, warnings: action.payload}
+    case UPDATE_SELECTED_WARNING_SENTENCE:
+      return {...state, selectedWarningSentence: action.payload}
     default:
       return state;
   }

@@ -6,7 +6,7 @@ function Loader() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setTimeout(() => dispatch(setAnimationFinished()), 3500);
+        setTimeout(() => dispatch(setAnimationFinished()), 0);
     }, [])
 
     return (
